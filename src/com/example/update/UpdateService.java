@@ -57,6 +57,9 @@ public class UpdateService extends Service {
 			if (updateFile.exists()) {
 				updateFile.delete();
 			}
+		}else {
+			//内部存储 /data/data/xxxxxappxxxx/files目录
+			updateDir=getFilesDir();
 		}
 
 		updateManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -108,7 +111,6 @@ public class UpdateService extends Service {
 
 			case DOWNLOAD_FAIL:
 				//下载失败
-
                 updateNotification.setLatestEventInfo(UpdateService.this, "上海地铁", "下载失败。", updatePendingIntent);
                 updateManager.notify(0, updateNotification);
 				break;
